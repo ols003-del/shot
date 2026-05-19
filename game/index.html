@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PengChat - Social World</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="ui-overlay" class="ui-overlay">
+        <div id="login-screen" class="screen active">
+            <div class="login-box">
+                <h1>🐧 PengChat</h1>
+                <p>Welcome to our colorful world!</p>
+                <input type="text" id="username" placeholder="Username" maxlength="16">
+                <input type="password" id="password" placeholder="Password">
+                <button id="login-btn" onclick="handleLogin()">Sign In</button>
+                <button id="register-btn" onclick="switchToRegister()">Create Account</button>
+            </div>
+        </div>
+
+        <div id="register-screen" class="screen">
+            <div class="login-box">
+                <h1>🐧 Create Account</h1>
+                <input type="text" id="reg-username" placeholder="Username" maxlength="16">
+                <input type="password" id="reg-password" placeholder="Password">
+                <input type="password" id="reg-password-confirm" placeholder="Confirm Password">
+                <button id="create-btn" onclick="handleRegister()">Create</button>
+                <button id="back-btn" onclick="switchToLogin()">Back</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="top-bar">
+                <div class="user-info">
+                    <span id="username-display">Player</span>
+                    <span id="coins-display">💰 0</span>
+                </div>
+                <div class="room-info">
+                    <span id="room-name">Plaza</span>
+                    <span id="player-count">👥 1</span>
+                </div>
+            </div>
+
+            <div class="hud">
+                <div class="left-panel">
+                    <div class="panel-section">
+                        <h3>🏠 Rooms</h3>
+                        <div class="room-list" id="room-list"></div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3>👥 Friends</h3>
+                        <div class="friends-list" id="friends-list">
+                            <p class="empty-text">No friends yet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="panel-tabs">
+                        <button class="tab-btn active" onclick="showInventory()">🎒 Inventory</button>
+                        <button class="tab-btn" onclick="showCharacter()">👗 Avatar</button>
+                        <button class="tab-btn" onclick="showGames()">🎮 Games</button>
+                    </div>
+
+                    <div id="inventory-tab" class="panel-section tab-content active">
+                        <div class="items-grid" id="items-grid"></div>
+                    </div>
+
+                    <div id="character-tab" class="panel-section tab-content">
+                        <div class="character-customizer">
+                            <div class="char-preview">
+                                <canvas id="char-canvas" width="120" height="150"></canvas>
+                            </div>
+                            <div class="color-picker">
+                                <label>Color:</label>
+                                <div class="color-options" id="color-options"></div>
+                            </div>
+                            <div class="hat-picker">
+                                <label>Hat:</label>
+                                <div class="hat-options" id="hat-options"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="games-tab" class="panel-section tab-content">
+                        <div class="games-list" id="games-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-box">
+                <input type="text" id="chat-input" placeholder="Say something..." maxlength="100">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="network.js"></script>
+    <script src="game.js"></script>
+    <script src="ui.js"></script>
+</body>
+</html>
